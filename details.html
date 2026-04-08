@@ -1,61 +1,63 @@
 <!DOCTYPE html>
-<html lang="ar" id="html-tag">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Details | التفاصيل</title>
-<style>
-    :root { --primary: #667eea; --bg: #f5f5f5; }
-    body { font-family: 'Segoe UI', sans-serif; margin:0; background: var(--bg); transition: 0.3s; }
-    header { background: #667eea; color: white; text-align: center; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-    .container { max-width: 800px; margin: 20px auto; padding: 25px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-    .back-btn { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; font-weight: bold; }
-    h2 { color: var(--primary); border-bottom: 2px solid #eee; padding-bottom: 10px; }
-    .info-row { margin-bottom: 15px; font-size: 1.1em; color: #444; display: flex; gap: 10px; }
-    .label { font-weight: bold; color: #888; min-width: 120px; }
-    form { margin-top: 30px; padding: 20px; background: #fafafa; border-radius: 12px; border: 1px solid #eee; }
-    input, textarea { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-    button { background: var(--primary); color: white; border: none; padding: 15px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأكيد الحجز | Jordan Spots</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .booking-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); width: 90%; max-width: 500px; }
+        h2 { color: #667eea; border-bottom: 2px solid #f0f2f5; padding-bottom: 10px; }
+        .info-item { margin: 15px 0; font-size: 1.1em; color: #444; }
+        .info-item b { color: #764ba2; }
+        input { width: 100%; padding: 12px; margin-top: 10px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
+        .btn-confirm { background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 15px; width: 100%; border-radius: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        .btn-back { background: #eee; color: #555; border: none; padding: 10px; width: 100%; border-radius: 12px; cursor: pointer; margin-top: 10px; }
+    </style>
 </head>
 <body>
-<header><h1 id="h-title">التفاصيل / Details</h1></header>
-<div class="container">
-    <a href="index.html" class="back-btn" id="b-btn">← العودة / Back</a>
-    <h2 id="p-name"></h2>
-    <div class="info-row"><span class="label" id="lbl-loc">الموقع:</span> <span id="p-loc"></span></div>
-    <div class="info-row"><span class="label" id="lbl-cost">التكلفة:</span> <span id="p-cost"></span></div>
-    <form id="contact-form">
-        <h3 id="f-title">تواصل معنا</h3>
-        <input type="text" id="i-name" required>
-        <input type="email" id="i-email" required>
-        <textarea id="i-msg" rows="4" required></textarea>
-        <button type="submit" id="s-btn">إرسال</button>
-    </form>
+
+<div class="booking-card">
+    <h2 id="p-name">اسم المكان</h2>
+    <div class="info-item">📍 الموقع: <span id="p-loc">...</span></div>
+    <div class="info-item">💰 السعر الإجمالي المتوقع: <b id="p-price">...</b> JOD</div>
+    
+    <hr>
+    
+    <div class="info-item">
+        <label>اسم المحجز:</label>
+        <input type="text" id="user-name" placeholder="أدخل اسمك الكامل">
+    </div>
+    
+    <div class="info-item">
+        <label>تاريخ الزيارة:</label>
+        <input type="date" id="visit-date">
+    </div>
+
+    <button class="btn-confirm" onclick="confirmBooking()">تأكيد الحجز الافتراضي</button>
+    <button class="btn-back" onclick="window.history.back()">العودة للملف الرئيسي</button>
 </div>
+
 <script>
-    const t = {
-        ar: { back: "← العودة للقائمة", loc: "الموقع:", cost: "التكلفة التقريبية:", fTitle: "أرسل استفسارك", pName: "اسمك الكامل", pEmail: "بريدك الإلكتروني", pMsg: "رسالتك...", send: "إرسال البيانات", done: "شكراً لك! تم استلام معلوماتك." },
-        en: { back: "← Back to List", loc: "Location:", cost: "Approx Cost:", fTitle: "Send Inquiry", pName: "Full Name", pEmail: "Email Address", pMsg: "Your message...", send: "Submit Info", done: "Thank you! Information received." }
-    };
-    const place = JSON.parse(localStorage.getItem('selectedPlace'));
-    if (place) {
-        const lang = place.currentLang || 'ar';
-        const ui = t[lang];
-        document.getElementById('html-tag').dir = lang === 'ar' ? 'rtl' : 'ltr';
-        document.getElementById('b-btn').textContent = ui.back;
-        document.getElementById('lbl-loc').textContent = ui.loc;
-        document.getElementById('lbl-cost').textContent = ui.cost;
-        document.getElementById('f-title').textContent = ui.fTitle;
-        document.getElementById('i-name').placeholder = ui.pName;
-        document.getElementById('i-email').placeholder = ui.pEmail;
-        document.getElementById('i-msg').placeholder = ui.pMsg;
-        document.getElementById('s-btn').textContent = ui.send;
-        document.getElementById('p-name').textContent = lang === 'ar' ? place.n_ar : place.n_en;
-        document.getElementById('p-loc').textContent = lang === 'ar' ? place.loc_ar : place.loc_en;
-        document.getElementById('p-cost').textContent = place.cost + " JOD";
-        document.getElementById('contact-form').onsubmit = (e) => { e.preventDefault(); alert(ui.done); };
-    } else { window.location.href = "index.html"; }
+    // استرجاع البيانات من الصفحة الرئيسية
+    const data = JSON.parse(localStorage.getItem('selectedPlace'));
+
+    if (data) {
+        document.getElementById('p-name').textContent = data.currentLang === 'ar' ? data.n_ar : data.n_en;
+        document.getElementById('p-loc').textContent = data.currentLang === 'ar' ? data.loc_ar : data.loc_en;
+        document.getElementById('p-price').textContent = data.totalCost;
+    }
+
+    function confirmBooking() {
+        const name = document.getElementById('user-name').value;
+        if (!name) {
+            alert("لطفاً أدخل اسمك لإتمام الحجز");
+            return;
+        }
+        alert(`تم استلام طلب حجزك يا ${name} لـ (${document.getElementById('p-name').textContent}) بنجاح!`);
+        window.location.href = "index.html";
+    }
 </script>
+
 </body>
 </html>
