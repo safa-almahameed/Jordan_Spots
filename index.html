@@ -3,32 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jordan Spots | الدليل الشامل</title>
+<title>Jordan Spots | النسخة الاحترافية</title>
 <style>
-    :root { --primary: #667eea; --secondary: #764ba2; --bg: #f0f2f5; }
-    body { font-family: 'Segoe UI', Tahoma, sans-serif; margin:0; background: var(--bg); transition: 0.3s; color: #333; }
-    header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color:white; text-align:center; padding:50px 20px; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-    .lang-switch { position: absolute; top: 20px; left: 20px; background: rgba(255,255,255,0.2); color: white; border: 1px solid white; padding: 10px 20px; border-radius: 30px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-    .lang-switch:hover { background: white; color: var(--primary); }
-    [dir="ltr"] .lang-switch { left: auto; right: 20px; }
-    .container { max-width:1100px; margin: -30px auto 40px; padding: 0 20px; }
-    .filter-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
-    .filter-group { display: flex; flex-direction: column; gap: 10px; }
-    label { font-weight: bold; font-size: 0.95em; color: #555; }
-    select, input { padding: 14px; border: 2px solid #eee; border-radius: 12px; outline: none; font-size: 1em; transition: 0.3s; }
-    select:focus, input:focus { border-color: var(--primary); }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 30px; }
-    .place-card { background: white; border-radius: 20px; padding: 25px; cursor: pointer; transition: 0.3s; border: 1px solid #eee; position: relative; overflow: hidden; }
-    .place-card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(102,126,234,0.15); border-color: var(--primary); }
-    .category-badge { position: absolute; top: 0; right: 0; background: #eee; padding: 5px 15px; font-size: 0.8em; border-bottom-left-radius: 15px; color: #666; }
-    [dir="ltr"] .category-badge { right: auto; left: 0; border-bottom-left-radius: 0; border-bottom-right-radius: 15px; }
-    .place-name { font-size: 1.3em; font-weight: bold; color: var(--primary); margin-bottom: 10px; display: block; }
-    .detail { font-size: 0.95em; color: #666; margin: 5px 0; display: flex; align-items: center; gap: 8px; }
-    .rating { color: #f1c40f; font-weight: bold; }
-    .status-msg { margin-top: 15px; padding: 8px 12px; border-radius: 8px; font-size: 0.85em; font-weight: bold; text-align: center; }
+    :root { --primary: #667eea; --secondary: #764ba2; --bg: #f8f9fa; }
+    body { font-family: 'Segoe UI', Tahoma, sans-serif; margin:0; background: var(--bg); transition: 0.3s; }
+    header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color:white; text-align:center; padding:40px 20px; position: relative; }
+    .lang-switch { position: absolute; top: 15px; left: 15px; background: rgba(255,255,255,0.2); color: white; border: 1px solid white; padding: 8px 18px; border-radius: 25px; cursor: pointer; font-weight: bold; }
+    [dir="ltr"] .lang-switch { left: auto; right: 15px; }
+    .container { max-width:1000px; margin:20px auto; padding:20px; }
+    .filter-card { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .filter-group { display: flex; flex-direction: column; gap: 8px; }
+    label { font-weight: bold; font-size: 0.9em; color: #666; }
+    select, input { padding: 12px; border: 1px solid #ddd; border-radius: 12px; outline: none; font-size: 1em; }
+    .place-card { background: white; border-radius: 18px; padding: 25px; margin-bottom: 15px; cursor: pointer; transition: 0.3s; border: 1px solid transparent; position: relative; }
+    .place-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+    .place-name { font-size: 1.4em; font-weight: bold; color: var(--primary); }
+    .place-meta { color: #888; font-size: 0.9em; margin-top: 5px; }
+    .status-msg { padding: 10px; border-radius: 8px; font-size: 0.9em; font-weight: bold; margin-top: 10px; }
     .msg-ok { background: #e8f5e9; color: #2e7d32; }
     .msg-warn { background: #ffebee; color: #c62828; }
-    .empty-state { text-align: center; padding: 100px; color: #999; grid-column: 1 / -1; }
+    .empty-state { text-align: center; padding: 60px; color: #aaa; }
 </style>
 </head>
 <body>
@@ -36,192 +30,109 @@
 <header>
     <button class="lang-switch" onclick="toggleLanguage()" id="lang-btn">English</button>
     <h1 id="main-title">اكتشف الأردن 🇯🇴</h1>
-    <p id="sub-title">دليلك الشامل لجميع المواقع والخدمات</p>
+    <p id="sub-title">دليلك الكامل لكل الخدمات والمواقع</p>
 </header>
 
 <div class="container">
     <div class="filter-card">
         <div class="filter-group">
-            <label id="lbl-cat">الفئة:</label>
+            <label id="lbl-cat">اختر الفئة:</label>
             <select id="category" onchange="renderPlaces()"></select>
         </div>
         <div class="filter-group">
-            <label id="lbl-budget">ميزانيتك (JOD):</label>
-            <input type="number" id="budget" placeholder="أدخل مبلغ" oninput="renderPlaces()">
+            <label id="lbl-budget">الميزانية الكلية (JOD):</label>
+            <input type="number" id="budget" placeholder="0" oninput="renderPlaces()">
         </div>
         <div class="filter-group">
             <label id="lbl-people">عدد الأشخاص:</label>
-            <input type="number" id="people" value="1" min="1" oninput="renderPlaces()">
+            <input type="number" id="people" value="1" oninput="renderPlaces()">
         </div>
     </div>
-    <div id="places-container" class="grid"></div>
+    <div id="places-container"></div>
 </div>
 
 <script>
 let currentLang = 'ar';
 const translations = {
-    ar: { title: "اكتشف الأردن 🇯🇴", subTitle: "دليلك الشامل لجميع المواقع والخدمات", lblCat: "الفئة:", lblBudget: "ميزانيتك الشخصية:", lblPeople: "عدد الأشخاص:", empty: "الرجاء اختيار فئة لعرض الأماكن...", warnBudget: "⚠️ ميزانية منخفضة! تحتاج: ", ok: "✅ الميزانية مناسبة", categories: { "": "-- اختر الفئة --", university: "🎓 الجامعات", school: "🏫 المدارس", mall: "🛍️ المولات", cafe: "☕ الكافيهات", restaurant: "🍽️ المطاعم", heritage: "🏛️ الأماكن الأثرية", ent: "🎮 الترفيه", kids: "👶 الأطفال", relax: "🧘‍♀️ استرخاء وعلاج", library: "📚 المكتبات", pharmacy: "💊 الصيدليات" } },
-    en: { title: "Explore Jordan 🇯🇴", subTitle: "Your Comprehensive Guide", lblCat: "Category:", lblBudget: "Your Budget:", lblPeople: "People:", empty: "Please select a category...", warnBudget: "⚠️ Low budget! Needs: ", ok: "✅ Budget fits", categories: { "": "-- Select Category --", university: "🎓 Universities", school: "🏫 Schools", mall: "🛍️ Malls", cafe: "☕ Cafes", restaurant: "🍽️ Restaurants", heritage: "🏛️ Heritage Sites", ent: "🎮 Entertainment", kids: "👶 Kids", relax: "🧘‍♀️ Relax & Spa", library: "📚 Libraries", pharmacy: "💊 Pharmacies" } }
+    ar: { title: "اكتشف الأردن 🇯🇴", subTitle: "دليلك الكامل لكل الخدمات والمواقع", lblCat: "اختر الفئة:", lblBudget: "ميزانيتك:", lblPeople: "عدد الأشخاص:", empty: "الرجاء اختيار فئة...", warnBudget: "⚠️ الميزانية منخفضة! تحتاج لـ: ", warnCap: "⚠️ المكان مزدحم لهذا العدد!", ok: "✅ خيار مناسب لميزانيتك والعدد.", categories: { "": "-- اختر --", university: "🎓 الجامعات", school: "🏫 المدارس", mall: "🛍️ المولات", cafe: "☕ الكافيهات", restaurant: "🍽️ المطاعم", heritage: "🏛️ الآثار", ent: "🎮 الترفيه", kids: "👶 الأطفال", relax: "🧘‍♀️ استرخاء", library: "📚 المكتبات", pharmacy: "💊 الصيدليات" } },
+    en: { title: "Explore Jordan 🇯🇴", subTitle: "Comprehensive Guide", lblCat: "Category:", lblBudget: "Your Budget:", lblPeople: "People Count:", empty: "Select category...", warnBudget: "⚠️ Low budget! You need: ", warnCap: "⚠️ Over capacity!", ok: "✅ Great choice for you.", categories: { "": "-- Select --", university: "🎓 Universities", school: "🏫 Schools", mall: "🛍️ Malls", cafe: "☕ Cafes", restaurant: "🍽️ Restaurants", heritage: "🏛️ Heritage", ent: "🎮 Entertainment", kids: "👶 Kids", relax: "🧘‍♀️ Relax", library: "📚 Libraries", pharmacy: "💊 Pharmacies" } }
 };
 
 const places = [
-    // --- UNIVERSITIES ---
-    { n_ar: "الجامعة الأردنية", n_en: "University of Jordan", cat: "university", cost: 2250, rate: 4.3, loc_ar: "الجبيهة", loc_en: "Jubeiha" },
-    { n_ar: "جامعة الأميرة سمية", n_en: "PSUT", cat: "university", cost: 5000, rate: 4.5, loc_ar: "خلدا", loc_en: "Khalda" },
-    { n_ar: "جامعة العلوم التطبيقية", n_en: "ASU", cat: "university", cost: 4500, rate: 4.1, loc_ar: "شفا بدران", loc_en: "Shafa Badran" },
-    { n_ar: "جامعة الزيتونة", n_en: "Al-Zaytoonah University", cat: "university", cost: 4000, rate: 4.2, loc_ar: "طريق المطار", loc_en: "Airport Road" },
-    { n_ar: "جامعة البترا", n_en: "Petra University", cat: "university", cost: 5000, rate: 4.3, loc_ar: "طريق المطار", loc_en: "Airport Road" },
-    { n_ar: "جامعة الشرق الأوسط", n_en: "Middle East University", cat: "university", cost: 3750, rate: 4.1, loc_ar: "الجبيهة", loc_en: "Jubeiha" },
-    { n_ar: "جامعة فيلادلفيا", n_en: "Philadelphia University", cat: "university", cost: 4000, rate: 4.0, loc_ar: "جرش", loc_en: "Jerash" },
-    { n_ar: "جامعة عمان العربية", n_en: "Amman Arab University", cat: "university", cost: 3250, rate: 4.0, loc_ar: "المفرق", loc_en: "Mafraq" },
-    { n_ar: "جامعة الإسراء", n_en: "Isra University", cat: "university", cost: 3500, rate: 3.9, loc_ar: "طريق المطار", loc_en: "Airport Road" },
-    { n_ar: "جامعة عمان الأهلية", n_en: "Al-Ahliyya Amman University", cat: "university", cost: 4000, rate: 4.0, loc_ar: "السلط", loc_en: "Salt" },
+    // --- UNIVERSITIES (10+) ---
+    {n_ar:"الجامعة الأردنية", n_en:"University of Jordan", cat:"university", cost:2250, cap:50000, loc_ar:"الجبيهة", loc_en:"Jubeiha", rate:4.3},
+    {n_ar:"جامعة سمية للتكنولوجيا", n_en:"PSUT", cat:"university", cost:5000, cap:5000, loc_ar:"خلدا", loc_en:"Khalda", rate:4.5},
+    {n_ar:"جامعة العلوم التطبيقية", n_en:"ASU", cat:"university", cost:4500, cap:10000, loc_ar:"شفا بدران", loc_en:"Shafa Badran", rate:4.1},
+    {n_ar:"جامعة الزيتونة", n_en:"Zaytoonah University", cat:"university", cost:4000, cap:15000, loc_ar:"طريق المطار", loc_en:"Airport Road", rate:4.2},
+    {n_ar:"جامعة البترا", n_en:"Petra University", cat:"university", cost:5000, cap:12000, loc_ar:"طريق المطار", loc_en:"Airport Road", rate:4.3},
+    {n_ar:"جامعة الشرق الأوسط", n_en:"MEU", cat:"university", cost:3750, cap:8000, loc_ar:"الجبيهة", loc_en:"Jubeiha", rate:4.1},
+    {n_ar:"جامعة فيلادلفيا", n_en:"Philadelphia University", cat:"university", cost:4000, cap:12000, loc_ar:"جرش", loc_en:"Jerash", rate:4.0},
+    {n_ar:"جامعة عمان العربية", n_en:"Amman Arab University", cat:"university", cost:3250, cap:5000, loc_ar:"المفرق", loc_en:"Mafraq", rate:4.0},
+    {n_ar:"جامعة الإسراء", n_en:"Isra University", cat:"university", cost:3500, cap:10000, loc_ar:"طريق المطار", loc_en:"Airport Road", rate:3.9},
+    {n_ar:"جامعة عمان الأهلية", n_en:"Amman Ahliyya University", cat:"university", cost:4000, cap:15000, loc_ar:"السلط", loc_en:"Salt", rate:4.0},
 
-    // --- SCHOOLS ---
-    { n_ar: "كينغز أكاديمي", n_en: "King’s Academy", cat: "school", cost: 20000, rate: 4.8, loc_ar: "مادبا", loc_en: "Madaba" },
-    { n_ar: "الأكاديمية الدولية", n_en: "IAA", cat: "school", cost: 11500, rate: 4.5, loc_ar: "طريق المطار", loc_en: "Airport Road" },
-    { n_ar: "مدرسة البكالوريا", n_en: "Amman Baccalaureate", cat: "school", cost: 10500, rate: 4.6, loc_ar: "خلدا", loc_en: "Khalda" },
-    { n_ar: "المدرسة الأمريكية الحديثة", n_en: "Modern American School", cat: "school", cost: 9000, rate: 4.4, loc_ar: "طريق المطار", loc_en: "Airport Road" },
-    { n_ar: "الجالية الأمريكية", n_en: "ACS", cat: "school", cost: 14000, rate: 4.7, loc_ar: "خلدا", loc_en: "Khalda" },
-    { n_ar: "كامبردج", n_en: "Cambridge High School", cat: "school", cost: 5500, rate: 4.2, loc_ar: "تلاع العلي", loc_en: "Tla' Al-Ali" },
-    { n_ar: "الارثوذكسية", n_en: "National Orthodox School", cat: "school", cost: 4500, rate: 4.3, loc_ar: "الشميساني", loc_en: "Shmeisani" },
-    { n_ar: "الأهلية للبنات", n_en: "Ahliyyah School", cat: "school", cost: 6000, rate: 4.3, loc_ar: "جبل عمان", loc_en: "Jabal Amman" },
-    { n_ar: "مدرسة اليوبيل", n_en: "Jubilee School", cat: "school", cost: 3000, rate: 4.7, loc_ar: "الجبيهة", loc_en: "Jubeiha" },
-    { n_ar: "مدارس الرواد", n_en: "Al Rowad Schools", cat: "school", cost: 5000, rate: 4.1, loc_ar: "ضاحية الرشيد", loc_en: "Al-Rasheed" },
+    // --- SCHOOLS (10+) ---
+    {n_ar:"كينغز أكاديمي", n_en:"King’s Academy", cat:"school", cost:20000, cap:1000, loc_ar:"مادبا", loc_en:"Madaba", rate:4.8},
+    {n_ar:"الأكاديمية الدولية", n_en:"IAA", cat:"school", cost:11500, cap:2000, loc_ar:"طريق المطار", loc_en:"Airport Road", rate:4.5},
+    {n_ar:"مدرسة البكالوريا", n_en:"Amman Baccalaureate", cat:"school", cost:10500, cap:1500, loc_ar:"خلدا", loc_en:"Khalda", rate:4.6},
+    {n_ar:"المدرسة الأمريكية الحديثة", n_en:"Modern American School", cat:"school", cost:9000, cap:1200, loc_ar:"طريق المطار", loc_en:"Airport Road", rate:4.4},
+    {n_ar:"الجالية الأمريكية", n_en:"ACS", cat:"school", cost:14000, cap:1000, loc_ar:"خلدا", loc_en:"Khalda", rate:4.7},
+    {n_ar:"كامبردج", n_en:"Cambridge", cat:"school", cost:5500, cap:2000, loc_ar:"تلاع العلي", loc_en:"Tla' Al-Ali", rate:4.2},
+    {n_ar:"الارثوذكسية", n_en:"Orthodox School", cat:"school", cost:4500, cap:2500, loc_ar:"الشميساني", loc_en:"Shmeisani", rate:4.3},
+    {n_ar:"الأهلية للبنات", n_en:"Ahliyyah School", cat:"school", cost:6000, cap:1200, loc_ar:"جبل عمان", loc_en:"Jabal Amman", rate:4.3},
+    {n_ar:"مدرسة اليوبيل", n_en:"Jubilee School", cat:"school", cost:3000, cap:1000, loc_ar:"الجبيهة", loc_en:"Jubeiha", rate:4.7},
+    {n_ar:"مدارس الرواد", n_en:"Al Rowad Schools", cat:"school", cost:5000, cap:3000, loc_ar:"ضاحية الرشيد", loc_en:"Al-Rasheed", rate:4.1},
 
     // --- MALLS ---
-    { n_ar: "سيتي مول", n_en: "City Mall", cat: "mall", cost: 30, rate: 4.5, loc_ar: "المدينة الطبية", loc_en: "Medical City" },
-    { n_ar: "مكة مول", n_en: "Mecca Mall", cat: "mall", cost: 20, rate: 4.3, loc_ar: "شارع مكة", loc_en: "Mecca St" },
-    { n_ar: "تاج مول", n_en: "Taj Mall", cat: "mall", cost: 60, rate: 4.6, loc_ar: "عبدون", loc_en: "Abdoun" },
-    { n_ar: "العبدلي مول", n_en: "Abdali Mall", cat: "mall", cost: 45, rate: 4.5, loc_ar: "العبدلي", loc_en: "Abdali" },
-    { n_ar: "جاليريا مول", n_en: "Galleria Mall", cat: "mall", cost: 35, rate: 4.2, loc_ar: "وادي صقرة", loc_en: "Wadi Saqra" },
-    { n_ar: "بركة مول", n_en: "Baraka Mall", cat: "mall", cost: 40, rate: 4.1, loc_ar: "السويفية", loc_en: "Sweifieh" },
-    { n_ar: "سامح مول", n_en: "Sameh Mall", cat: "mall", cost: 15, rate: 4.0, loc_ar: "عدة مناطق", loc_en: "Multiple" },
-    { n_ar: "سويفية فيلاج", n_en: "Sweifieh Village", cat: "mall", cost: 45, rate: 4.4, loc_ar: "السويفية", loc_en: "Sweifieh" },
-    { n_ar: "بلازا مول", n_en: "Plaza Mall", cat: "mall", cost: 20, rate: 4.0, loc_ar: "الجبيهة", loc_en: "Jubeiha" },
-    { n_ar: "أفينيو مول", n_en: "Avenue Mall", cat: "mall", cost: 25, rate: 4.1, loc_ar: "الزرقاء", loc_en: "Zarqa" },
+    {n_ar:"سيتي مول", n_en:"City Mall", cat:"mall", cost:30, cap:15000, loc_ar:"المدينة الطبية", loc_en:"Medical City", rate:4.5},
+    {n_ar:"مكة مول", n_en:"Mecca Mall", cat:"mall", cost:22, cap:20000, loc_ar:"شارع مكة", loc_en:"Mecca St", rate:4.3},
+    {n_ar:"تاج مول", n_en:"Taj Mall", cat:"mall", cost:60, cap:12000, loc_ar:"عبدون", loc_en:"Abdoun", rate:4.6},
+    {n_ar:"العبدلي مول", n_en:"Abdali Mall", cat:"mall", cost:45, cap:25000, loc_ar:"العبدلي", loc_en:"Abdali", rate:4.5},
+    {n_ar:"جاليريا مول", n_en:"Galleria Mall", cat:"mall", cost:35, cap:8000, loc_ar:"وادي صقرة", loc_en:"Wadi Saqra", rate:4.2},
 
     // --- CAFES ---
-    { n_ar: "ستارباكس", n_en: "Starbucks", cat: "cafe", cost: 4.5, rate: 4.2, loc_ar: "عدة فروع", loc_en: "Multiple" },
-    { n_ar: "كوستا كوفي", n_en: "Costa Coffee", cat: "cafe", cost: 4.5, rate: 4.1, loc_ar: "عدة فروع", loc_en: "Multiple" },
-    { n_ar: "غلوريا جينز", n_en: "Gloria Jean’s", cat: "cafe", cost: 4, rate: 4.0, loc_ar: "عدة فروع", loc_en: "Multiple" },
-    { n_ar: "رومي كافيه", n_en: "Rumi Cafe", cat: "cafe", cost: 6, rate: 4.6, loc_ar: "اللويبدة", loc_en: "Webdeh" },
-    { n_ar: "بوكس آت كافيه", n_en: "Books@Cafe", cat: "cafe", cost: 7.5, rate: 4.5, loc_ar: "جبل عمان", loc_en: "Jabal Amman" },
-    { n_ar: "وايلد جوردان", n_en: "Wild Jordan", cat: "cafe", cost: 6.5, rate: 4.6, loc_ar: "جبل عمان", loc_en: "Jabal Amman" },
-    { n_ar: "جفرة كافيه", n_en: "Jafra Cafe", cat: "cafe", cost: 3.5, rate: 4.4, loc_ar: "وسط البلد", loc_en: "Downtown" },
-    { n_ar: "أسترولاب كافيه", n_en: "Astrolabe", cat: "cafe", cost: 5, rate: 4.5, loc_ar: "عبدون", loc_en: "Abdoun" },
-    { n_ar: "ديمتريز كوفي", n_en: "Dimitri’s", cat: "cafe", cost: 3.5, rate: 4.3, loc_ar: "عدة فروع", loc_en: "Multiple" },
-    { n_ar: "كاريبو كوفي", n_en: "Caribou Coffee", cat: "cafe", cost: 4.5, rate: 4.2, loc_ar: "عدة فروع", loc_en: "Multiple" },
+    {n_ar:"ستارباكس", n_en:"Starbucks", cat:"cafe", cost:4.5, cap:100, loc_ar:"عدة فروع", loc_en:"Multiple", rate:4.2},
+    {n_ar:"رومي كافيه", n_en:"Rumi Cafe", cat:"cafe", cost:6, cap:50, loc_ar:"اللويبدة", loc_en:"Webdeh", rate:4.6},
+    {n_ar:"بوكس آت كافيه", n_en:"Books@Cafe", cat:"cafe", cost:7.5, cap:80, loc_ar:"جبل عمان", loc_en:"Jabal Amman", rate:4.5},
 
     // --- RESTAURANTS ---
-    { n_ar: "مطعم هاشم", n_en: "Hashem", cat: "restaurant", cost: 3.5, rate: 4.5, loc_ar: "وسط البلد", loc_en: "Downtown" },
-    { n_ar: "سفرة", n_en: "Sufra", cat: "restaurant", cost: 15, rate: 4.6, loc_ar: "الرينبو", loc_en: "Rainbow St" },
-    { n_ar: "فخر الدين", n_en: "Fakhreldin", cat: "restaurant", cost: 30, rate: 4.7, loc_ar: "جبل عمان", loc_en: "Jabal Amman" },
-    { n_ar: "طواحين الهوا", n_en: "Tawaheen Al Hawa", cat: "restaurant", cost: 18, rate: 4.5, loc_ar: "خلدا", loc_en: "Khalda" },
-    { n_ar: "ريم البوادي", n_en: "Reem Al Bawadi", cat: "restaurant", cost: 22, rate: 4.4, loc_ar: "الجبيهة", loc_en: "Jubeiha" },
-    { n_ar: "مطعم جبران", n_en: "Jubran", cat: "restaurant", cost: 14, rate: 4.3, loc_ar: "العبدلي", loc_en: "Abdali" },
-    { n_ar: "كان زمان", n_en: "Kan Zaman", cat: "restaurant", cost: 25, rate: 4.5, loc_ar: "طريق المطار", loc_en: "Airport Road" },
-    { n_ar: "حلويات زلاطيمو", n_en: "Zalatimo", cat: "restaurant", cost: 6, rate: 4.6, loc_ar: "عدة فروع", loc_en: "Multiple" },
-    { n_ar: "حلويات حبيبة", n_en: "Habibah Sweets", cat: "restaurant", cost: 5, rate: 4.7, loc_ar: "وسط البلد", loc_en: "Downtown" },
-    { n_ar: "فلافل القدس", n_en: "AlQuds Falafel", cat: "restaurant", cost: 2, rate: 4.6, loc_ar: "شارع الرينبو", loc_en: "Rainbow St" },
+    {n_ar:"مطعم هاشم", n_en:"Hashem Restaurant", cat:"restaurant", cost:3.5, cap:200, loc_ar:"وسط البلد", loc_en:"Downtown", rate:4.5},
+    {n_ar:"سفرة", n_en:"Sufra", cat:"restaurant", cost:15, cap:60, loc_ar:"الرينبو", loc_en:"Rainbow St", rate:4.6},
+    {n_ar:"فخر الدين", n_en:"Fakhreldin", cat:"restaurant", cost:30, cap:100, loc_ar:"جبل عمان", loc_en:"Jabal Amman", rate:4.7},
 
     // --- HERITAGE ---
-    { n_ar: "قلعة عمان", n_en: "Amman Citadel", cat: "heritage", cost: 3.5, rate: 4.5, loc_ar: "جبل القلعة", loc_en: "Jabal Al-Qalaa" },
-    { n_ar: "المدرج الروماني", n_en: "Roman Theater", cat: "heritage", cost: 3.5, rate: 4.5, loc_ar: "وسط البلد", loc_en: "Downtown" },
-    { n_ar: "معبد هرقل", n_en: "Temple of Hercules", cat: "heritage", cost: 3.5, rate: 4.6, loc_ar: "جبل القلعة", loc_en: "Jabal Al-Qalaa" },
-    { n_ar: "القصر الأموي", n_en: "Umayyad Palace", cat: "heritage", cost: 3.5, rate: 4.6, loc_ar: "جبل القلعة", loc_en: "Jabal Al-Qalaa" },
-    { n_ar: "متحف الآثار", n_en: "Archaeological Museum", cat: "heritage", cost: 2.5, rate: 4.5, loc_ar: "القلعة", loc_en: "Citadel" },
-    { n_ar: "سبيل الحوريات", n_en: "Nymphaeum", cat: "heritage", cost: 1, rate: 4.3, loc_ar: "وسط البلد", loc_en: "Downtown" },
-    { n_ar: "ديوان الدوق", n_en: "Duke’s Diwan", cat: "heritage", cost: 1, rate: 4.4, loc_ar: "وسط البلد", loc_en: "Downtown" },
-    { n_ar: "قصر العبد", n_en: "Qasr Al-Abd", cat: "heritage", cost: 2.5, rate: 4.4, loc_ar: "عراق الأمير", loc_en: "Iraq Al-Amir" },
-    { n_ar: "عراق الأمير", n_en: "Iraq Al-Amir", cat: "heritage", cost: 2, rate: 4.5, loc_ar: "وادي السير", loc_en: "Wadi Al-Seer" },
-    { n_ar: "متحف الخط الحجازي", n_en: "Hijaz Railway", cat: "heritage", cost: 1.5, rate: 4.2, loc_ar: "المحطة", loc_en: "Al-Mahatta" },
+    {n_ar:"قلعة عمان", n_en:"Amman Citadel", cat:"heritage", cost:3.5, cap:10000, loc_ar:"جبل القلعة", loc_en:"Citadel Hill", rate:4.5},
+    {n_ar:"المدرج الروماني", n_en:"Roman Theater", cat:"heritage", cost:3.5, cap:6000, loc_ar:"وسط البلد", loc_en:"Downtown", rate:4.5},
+    {n_ar:"معبد هرقل", n_en:"Temple of Hercules", cat:"heritage", cost:3.5, cap:5000, loc_ar:"جبل القلعة", loc_en:"Citadel Hill", rate:4.6},
 
     // --- ENTERTAINMENT ---
-    { n_ar: "حدائق الحسين", n_en: "Al Hussein Parks", cat: "ent", cost: 1, rate: 4.6, loc_ar: "المدينة الطبية", loc_en: "Medical City" },
-    { n_ar: "متحف السيارات الملكي", n_en: "Automobile Museum", cat: "ent", cost: 4, rate: 4.7, loc_ar: "حدائق الحسين", loc_en: "Al Hussein Parks" },
-    { n_ar: "أكوا فن", n_en: "Aqua Fun", cat: "ent", cost: 17.5, rate: 4.2, loc_ar: "طريق المطار", loc_en: "Airport Road" },
-    { n_ar: "هروب من الغرفة", n_en: "Escape the Room", cat: "ent", cost: 11.5, rate: 4.4, loc_ar: "الصويفية", loc_en: "Sweifieh" },
-    { n_ar: "سترايكرز", n_en: "Strikers", cat: "ent", cost: 8.5, rate: 4.3, loc_ar: "الفنادق", loc_en: "Hotels Area" },
-    { n_ar: "جرافيتي بارك", n_en: "Gravity", cat: "ent", cost: 11, rate: 4.4, loc_ar: "خلدا", loc_en: "Khalda" },
-    { n_ar: "بينتبول الأردن", n_en: "Paintball Jordan", cat: "ent", cost: 15, rate: 4.2, loc_ar: "طريق المطار", loc_en: "Airport Road" },
-    { n_ar: "باور هت", n_en: "Power Hut", cat: "ent", cost: 6.5, rate: 4.3, loc_ar: "عمان", loc_en: "Amman" },
-    { n_ar: "نادي وادي دجلة", n_en: "Wadi Degla", cat: "ent", cost: 20, rate: 4.4, loc_ar: "طريق المطار", loc_en: "Airport Road" },
-    { n_ar: "أكشن تارجت", n_en: "Action Target", cat: "ent", cost: 27.5, rate: 4.5, loc_ar: "المقابلين", loc_en: "Muqabalayn" },
-
-    // --- KIDS ---
-    { n_ar: "مركز زها الثقافي", n_en: "Zaha Center", cat: "kids", cost: 1.5, rate: 4.7, loc_ar: "خلدا", loc_en: "Khalda" },
-    { n_ar: "فن سيتي", n_en: "Fun City", cat: "kids", cost: 10, rate: 4.2, loc_ar: "المولات", loc_en: "Malls" },
-    { n_ar: "أورانج بلاي", n_en: "Orange Play", cat: "kids", cost: 8.5, rate: 4.3, loc_ar: "عدة فروع", loc_en: "Multiple" },
-    { n_ar: "تشيكي مونكيز", n_en: "Cheeky Monkeys", cat: "kids", cost: 10.5, rate: 4.4, loc_ar: "عبدون", loc_en: "Abdoun" },
-    { n_ar: "المستكشفون الصغار", n_en: "Little Explorers", cat: "kids", cost: 14, rate: 4.5, loc_ar: "تاج مول", loc_en: "Taj Mall" },
-    { n_ar: "جينغو جنغل", n_en: "Jingo’s Jungle", cat: "kids", cost: 8.5, rate: 4.3, loc_ar: "سيتي مول", loc_en: "City Mall" },
-    { n_ar: "كيدزانيا عمان", n_en: "Kidzania", cat: "kids", cost: 17.5, rate: 4.6, loc_ar: "العبدلي مول", loc_en: "Abdali Mall" },
-    { n_ar: "بلاي تاون", n_en: "Play Town", cat: "kids", cost: 7.5, rate: 4.2, loc_ar: "عمان", loc_en: "Amman" },
-    { n_ar: "كيدز بلانيت", n_en: "Kids Planet", cat: "kids", cost: 7, rate: 4.1, loc_ar: "عمان", loc_en: "Amman" },
-    { n_ar: "هابي لاند", n_en: "Happy Land", cat: "kids", cost: 5.5, rate: 4.0, loc_ar: "عمان", loc_en: "Amman" },
+    {n_ar:"حدائق الحسين", n_en:"Al Hussein Parks", cat:"ent", cost:1, cap:20000, loc_ar:"المدينة الطبية", loc_en:"Medical City", rate:4.6},
+    {n_ar:"متحف السيارات الملكي", n_en:"Automobile Museum", cat:"ent", cost:4, cap:500, loc_ar:"حدائق الحسين", loc_en:"Parks", rate:4.7},
 
     // --- RELAX ---
-    { n_ar: "البحر الميت", n_en: "Dead Sea", cat: "relax", cost: 60, rate: 5.0, loc_ar: "البحر الميت", loc_en: "Dead Sea" },
-    { n_ar: "حمامات ماعين", n_en: "Ma’in Hot Springs", cat: "relax", cost: 32.5, rate: 4.7, loc_ar: "مادبا", loc_en: "Madaba" },
-    { n_ar: "تاليسا سبا", n_en: "Talise Spa", cat: "relax", cost: 100, rate: 4.8, loc_ar: "البحر الميت", loc_en: "Dead Sea" },
-    { n_ar: "كمبينسكي عشتار", n_en: "Ishtar Spa", cat: "relax", cost: 105, rate: 4.8, loc_ar: "البحر الميت", loc_en: "Dead Sea" },
-    { n_ar: "موفنبيك سبا", n_en: "Movenpick Spa", cat: "relax", cost: 85, rate: 4.7, loc_ar: "البحر الميت", loc_en: "Dead Sea" },
-    { n_ar: "سبا فندق أياص", n_en: "Ayass Spa", cat: "relax", cost: 42.5, rate: 4.4, loc_ar: "شارع المدينة", loc_en: "Madina St" },
-    { n_ar: "سبا فور سيزونز", n_en: "Four Seasons", cat: "relax", cost: 110, rate: 4.8, loc_ar: "الدوار الخامس", loc_en: "5th Circle" },
-    { n_ar: "سبا جراند حياة", n_en: "Grand Hyatt Spa", cat: "relax", cost: 100, rate: 4.7, loc_ar: "جبل عمان", loc_en: "Jabal Amman" },
-    { n_ar: "سبا لو رويال", n_en: "Le Royal Spa", cat: "relax", cost: 70, rate: 4.5, loc_ar: "الدوار الثالث", loc_en: "3rd Circle" },
-    { n_ar: "سبا بريستول", n_en: "Bristol Spa", cat: "relax", cost: 60, rate: 4.4, loc_ar: "الدوار الخامس", loc_en: "5th Circle" },
+    {n_ar:"البحر الميت", n_en:"Dead Sea", cat:"relax", cost:60, cap:10000, loc_ar:"البحر الميت", loc_en:"Dead Sea", rate:5.0},
+    {n_ar:"حمامات ماعين", n_en:"Ma’in Hot Springs", cat:"relax", cost:32.5, cap:1000, loc_ar:"مادبا", loc_en:"Madaba", rate:4.7},
 
     // --- LIBRARIES ---
-    { n_ar: "مكتبة شومان", n_en: "Shoman Library", cat: "library", cost: 1, rate: 4.8, loc_ar: "جبل عمان", loc_en: "Jabal Amman" },
-    { n_ar: "مكتبة الجامعة الأردنية", n_en: "JU Library", cat: "library", cost: 1, rate: 4.5, loc_ar: "الجامعة الأردنية", loc_en: "JU" },
-    { n_ar: "مكتبة شومان العامة", n_en: "Public Shoman", cat: "library", cost: 1, rate: 4.8, loc_ar: "المصدار", loc_en: "Al-Misdar" },
-    { n_ar: "مكتبة مركز هيا", n_en: "Haya Center Library", cat: "library", cost: 1, rate: 4.6, loc_ar: "الشميساني", loc_en: "Shmeisani" },
-    { n_ar: "مكتبة الأمانة", n_en: "GAM Library", cat: "library", cost: 0.5, rate: 4.2, loc_ar: "وسط البلد", loc_en: "Downtown" },
-    { n_ar: "مكتبة متحف الأطفال", n_en: "Children Museum", cat: "library", cost: 3.5, rate: 4.7, loc_ar: "حدائق الحسين", loc_en: "Al Hussein Parks" },
-    { n_ar: "مكتبة زها", n_en: "Zaha Library", cat: "library", cost: 1, rate: 4.6, loc_ar: "خلدا", loc_en: "Khalda" },
-    { n_ar: "المركز البريطاني", n_en: "British Council", cat: "library", cost: 12.5, rate: 4.5, loc_ar: "جبل عمان", loc_en: "Jabal Amman" },
-    { n_ar: "مكتبة كولومبوس", n_en: "Columbus Library", cat: "library", cost: 1, rate: 4.3, loc_ar: "عمان", loc_en: "Amman" },
-    { n_ar: "ريدرز", n_en: "Readers Bookshop", cat: "library", cost: 17.5, rate: 4.4, loc_ar: "المنطقة السكنية", loc_en: "Cosmo" },
+    {n_ar:"مكتبة شومان", n_en:"Shoman Library", cat:"library", cost:1, cap:800, loc_ar:"جبل عمان", loc_en:"Jabal Amman", rate:4.8},
 
     // --- PHARMACIES ---
-    { n_ar: "صيدلية دواكم", n_en: "Dawacom", cat: "pharmacy", cost: 11, rate: 4.2, loc_ar: "عدة فروع", loc_en: "Multiple" },
-    { n_ar: "فارمسي ون", n_en: "Pharmacy One", cat: "pharmacy", cost: 14, rate: 4.3, loc_ar: "عدة فروع", loc_en: "Multiple" },
-    { n_ar: "صيدلية الحياة", n_en: "Al Hayat", cat: "pharmacy", cost: 8.5, rate: 4.1, loc_ar: "عمان", loc_en: "Amman" },
-    { n_ar: "الصيدليات المتحدة", n_en: "United Pharmacies", cat: "pharmacy", cost: 11, rate: 4.2, loc_ar: "عدة فروع", loc_en: "Multiple" },
-    { n_ar: "صيدلية هيلث بلس", n_en: "Health Plus", cat: "pharmacy", cost: 10.5, rate: 4.1, loc_ar: "عمان", loc_en: "Amman" },
-    { n_ar: "صيدلية كير", n_en: "Care Pharmacy", cat: "pharmacy", cost: 8.5, rate: 4.0, loc_ar: "عمان", loc_en: "Amman" },
-    { n_ar: "صيدلية فاميلي", n_en: "Family Pharmacy", cat: "pharmacy", cost: 8.5, rate: 4.1, loc_ar: "عمان", loc_en: "Amman" },
-    { n_ar: "ويلنس فارمسي", n_en: "Wellness", cat: "pharmacy", cost: 11.5, rate: 4.2, loc_ar: "عمان", loc_en: "Amman" },
-    { n_ar: "توتال كير", n_en: "Total Care", cat: "pharmacy", cost: 10, rate: 4.0, loc_ar: "عمان", loc_en: "Amman" },
-    { n_ar: "صيدلية الرازي", n_en: "Al-Razi", cat: "pharmacy", cost: 8.5, rate: 4.1, loc_ar: "عمان", loc_en: "Amman" }
+    {n_ar:"صيدلية فارمسي ون", n_en:"Pharmacy One", cat:"pharmacy", cost:14, cap:50, loc_ar:"عدة فروع", loc_en:"Multiple", rate:4.3}
 ];
 
 function toggleLanguage() { currentLang = currentLang === 'ar' ? 'en' : 'ar'; updateUI(); }
 
 function updateUI() {
-    const t = translations[currentLang];
-    const h = document.getElementById('html-tag');
-    h.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-    h.lang = currentLang;
-    
+    const t = translations[currentLang]; document.getElementById('html-tag').dir = currentLang === 'ar' ? 'rtl' : 'ltr';
     document.getElementById('lang-btn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
     document.getElementById('main-title').textContent = t.title;
     document.getElementById('sub-title').textContent = t.subTitle;
     document.getElementById('lbl-cat').textContent = t.lblCat;
     document.getElementById('lbl-budget').textContent = t.lblBudget;
     document.getElementById('lbl-people').textContent = t.lblPeople;
-    
-    const s = document.getElementById('category');
-    const v = s.value; s.innerHTML = "";
-    for (let k in t.categories) {
-        const o = document.createElement('option');
-        o.value = k; o.textContent = t.categories[k];
-        s.appendChild(o);
-    }
-    s.value = v;
-    renderPlaces();
+    const s = document.getElementById('category'); const v = s.value; s.innerHTML = "";
+    for (let k in t.categories) { const o = document.createElement('option'); o.value = k; o.textContent = t.categories[k]; s.appendChild(o); }
+    s.value = v; renderPlaces();
 }
 
 function renderPlaces() {
@@ -231,32 +142,29 @@ function renderPlaces() {
     const con = document.getElementById('places-container');
     const t = translations[currentLang];
 
-    if (!cat) { con.innerHTML = `<div class="empty-state"><h3>${t.empty}</h3></div>`; return; }
-    
+    if (!cat) { con.innerHTML = `<div class="empty-state">${t.empty}</div>`; return; }
     con.innerHTML = "";
-    const filtered = places.filter(p => p.cat === cat);
-
-    filtered.forEach(p => {
+    
+    places.filter(p => p.cat === cat).forEach(p => {
         const totalCost = p.cost * peo;
-        let statusClass = "msg-ok";
-        let statusText = t.ok;
+        let statusMsg = "";
 
         if (bud !== Infinity && bud < totalCost) {
-            statusClass = "msg-warn";
-            statusText = t.warnBudget + totalCost + " JOD";
+            statusMsg = `<div class="status-msg msg-warn">${t.warnBudget} ${totalCost} JOD</div>`;
+        } else if (peo > p.cap) {
+            statusMsg = `<div class="status-msg msg-warn">${t.warnCap}</div>`;
+        } else {
+            statusMsg = `<div class="status-msg msg-ok">${t.ok}</div>`;
         }
 
         const card = document.createElement('div');
         card.className = "place-card";
         card.innerHTML = `
-            <div class="category-badge">${t.categories[p.cat]}</div>
-            <span class="place-name">${currentLang === 'ar' ? p.n_ar : p.n_en}</span>
-            <div class="detail">📍 <span>${currentLang === 'ar' ? p.loc_ar : p.loc_en}</span></div>
-            <div class="detail">⭐ <span class="rating">${p.rate} / 5.0</span></div>
-            <div class="detail">💰 <span>${p.cost} JOD / Person</span></div>
-            <div class="status-msg ${statusClass}">${statusText}</div>
+            <div class="place-name">${currentLang === 'ar' ? p.n_ar : p.n_en}</div>
+            <div class="place-meta">📍 ${currentLang === 'ar' ? p.loc_ar : p.loc_en} | ⭐ ${p.rate}</div>
+            <div class="place-meta">💰 ${p.cost} JOD / Person</div>
+            ${statusMsg}
         `;
-        
         card.onclick = () => {
             localStorage.setItem('selectedPlace', JSON.stringify({...p, currentLang}));
             window.location.href = "details.html";
@@ -264,7 +172,6 @@ function renderPlaces() {
         con.appendChild(card);
     });
 }
-
 updateUI();
 </script>
 </body>
