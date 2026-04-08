@@ -1,74 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" id="html-tag">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Place Details</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin:0; padding:0; background: #f5f5f5; }
-        header { background:#667eea; color:white; text-align:center; padding:20px; }
-        .container { max-width: 800px; margin:20px auto; padding:20px; background:white; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.1);}
-        h2 { margin-bottom:15px; color:#667eea; }
-        .detail-info { margin-bottom:10px; font-size:1.1em; color:#333; border-bottom: 1px solid #eee; padding-bottom: 5px;}
-        form { margin-top:30px; padding: 20px; background: #fafafa; border-radius: 10px; }
-        input, textarea { width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ccc; box-sizing: border-box; }
-        button { padding:12px 20px; border:none; border-radius:8px; background:#667eea; color:white; font-size:1em; cursor:pointer; width: 100%; }
-        button:hover { background:#5560c5; }
-        .back-btn { display: inline-block; margin-bottom: 20px; text-decoration: none; color: #667eea; font-weight: bold; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Details | التفاصيل</title>
+<style>
+    :root { --primary: #667eea; --bg: #f5f5f5; }
+    body { font-family: 'Segoe UI', sans-serif; margin:0; background: var(--bg); transition: 0.3s; }
+    header { background: #667eea; color: white; text-align: center; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .container { max-width: 800px; margin: 20px auto; padding: 25px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+    .back-btn { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; font-weight: bold; }
+    h2 { color: var(--primary); border-bottom: 2px solid #eee; padding-bottom: 10px; }
+    .info-row { margin-bottom: 15px; font-size: 1.1em; color: #444; display: flex; gap: 10px; }
+    .label { font-weight: bold; color: #888; min-width: 120px; }
+    form { margin-top: 30px; padding: 20px; background: #fafafa; border-radius: 12px; border: 1px solid #eee; }
+    input, textarea { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+    button { background: var(--primary); color: white; border: none; padding: 15px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; }
+</style>
 </head>
 <body>
-
-<header>
-    <h1>Place Details</h1>
-</header>
-
+<header><h1 id="h-title">التفاصيل / Details</h1></header>
 <div class="container">
-    <a href="index.html" class="back-btn">← Back to List</a>
-    
-    <div id="details-content">
-        <h2 id="place-name"></h2>
-        <div class="detail-info" id="place-category"></div>
-        <div class="detail-info" id="place-type"></div>
-        <div class="detail-info" id="place-cost"></div>
-        <div class="detail-info" id="place-rating"></div>
-        <div class="detail-info" id="place-desc"></div>
-        <div class="detail-info" id="place-location"></div>
-    </div>
-
-    <h3>Submit your info (Non-official)</h3>
-    <form id="user-form">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Email" required>
-        <input type="text" placeholder="Phone Number" required>
-        <textarea placeholder="Your Request / Message" required></textarea>
-        <button type="submit">Send Info</button>
+    <a href="index.html" class="back-btn" id="b-btn">← العودة / Back</a>
+    <h2 id="p-name"></h2>
+    <div class="info-row"><span class="label" id="lbl-loc">الموقع:</span> <span id="p-loc"></span></div>
+    <div class="info-row"><span class="label" id="lbl-cost">التكلفة:</span> <span id="p-cost"></span></div>
+    <form id="contact-form">
+        <h3 id="f-title">تواصل معنا</h3>
+        <input type="text" id="i-name" required>
+        <input type="email" id="i-email" required>
+        <textarea id="i-msg" rows="4" required></textarea>
+        <button type="submit" id="s-btn">إرسال</button>
     </form>
 </div>
-
 <script>
-    // جلب البيانات من ذاكرة المتصفح
+    const t = {
+        ar: { back: "← العودة للقائمة", loc: "الموقع:", cost: "التكلفة التقريبية:", fTitle: "أرسل استفسارك", pName: "اسمك الكامل", pEmail: "بريدك الإلكتروني", pMsg: "رسالتك...", send: "إرسال البيانات", done: "شكراً لك! تم استلام معلوماتك." },
+        en: { back: "← Back to List", loc: "Location:", cost: "Approx Cost:", fTitle: "Send Inquiry", pName: "Full Name", pEmail: "Email Address", pMsg: "Your message...", send: "Submit Info", done: "Thank you! Information received." }
+    };
     const place = JSON.parse(localStorage.getItem('selectedPlace'));
-
-    if(place) {
-        document.getElementById('place-name').textContent = place.name;
-        document.getElementById('place-category').textContent = "Category: " + place.category;
-        document.getElementById('place-type').textContent = "Type: " + place.type;
-        document.getElementById('place-cost').textContent = "Cost: " + place.cost + " JOD";
-        document.getElementById('place-rating').textContent = "Rating: " + place.rating + " ⭐";
-        document.getElementById('place-desc').textContent = "Description: " + place.desc;
-        document.getElementById('place-location').textContent = "Location: " + place.location;
-    } else {
-        document.getElementById('details-content').innerHTML = "<p>No details found. Please go back and select a place.</p>";
-    }
-
-    // تعامل مع النموذج (Form)
-    document.getElementById('user-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert("Thank you! Your information has been submitted (Simulated).");
-        this.reset();
-    });
+    if (place) {
+        const lang = place.currentLang || 'ar';
+        const ui = t[lang];
+        document.getElementById('html-tag').dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.getElementById('b-btn').textContent = ui.back;
+        document.getElementById('lbl-loc').textContent = ui.loc;
+        document.getElementById('lbl-cost').textContent = ui.cost;
+        document.getElementById('f-title').textContent = ui.fTitle;
+        document.getElementById('i-name').placeholder = ui.pName;
+        document.getElementById('i-email').placeholder = ui.pEmail;
+        document.getElementById('i-msg').placeholder = ui.pMsg;
+        document.getElementById('s-btn').textContent = ui.send;
+        document.getElementById('p-name').textContent = lang === 'ar' ? place.n_ar : place.n_en;
+        document.getElementById('p-loc').textContent = lang === 'ar' ? place.loc_ar : place.loc_en;
+        document.getElementById('p-cost').textContent = place.cost + " JOD";
+        document.getElementById('contact-form').onsubmit = (e) => { e.preventDefault(); alert(ui.done); };
+    } else { window.location.href = "index.html"; }
 </script>
-
 </body>
 </html>
