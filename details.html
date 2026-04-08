@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Details</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin:0; padding:0; background: #f5f5f5; }
+        header { background:#667eea; color:white; text-align:center; padding:20px; }
+        .container { max-width: 800px; margin:20px auto; padding:20px; background:white; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.1);}
+        h2 { margin-bottom:15px; color:#667eea; }
+        .detail-info { margin-bottom:10px; font-size:1.1em; color:#333; border-bottom: 1px solid #eee; padding-bottom: 5px;}
+        form { margin-top:30px; padding: 20px; background: #fafafa; border-radius: 10px; }
+        input, textarea { width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ccc; box-sizing: border-box; }
+        button { padding:12px 20px; border:none; border-radius:8px; background:#667eea; color:white; font-size:1em; cursor:pointer; width: 100%; }
+        button:hover { background:#5560c5; }
+        .back-btn { display: inline-block; margin-bottom: 20px; text-decoration: none; color: #667eea; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Place Details</h1>
+</header>
+
+<div class="container">
+    <a href="index.html" class="back-btn">← Back to List</a>
+    
+    <div id="details-content">
+        <h2 id="place-name"></h2>
+        <div class="detail-info" id="place-category"></div>
+        <div class="detail-info" id="place-type"></div>
+        <div class="detail-info" id="place-cost"></div>
+        <div class="detail-info" id="place-rating"></div>
+        <div class="detail-info" id="place-desc"></div>
+        <div class="detail-info" id="place-location"></div>
+    </div>
+
+    <h3>Submit your info (Non-official)</h3>
+    <form id="user-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="text" placeholder="Phone Number" required>
+        <textarea placeholder="Your Request / Message" required></textarea>
+        <button type="submit">Send Info</button>
+    </form>
+</div>
+
+<script>
+    // جلب البيانات من ذاكرة المتصفح
+    const place = JSON.parse(localStorage.getItem('selectedPlace'));
+
+    if(place) {
+        document.getElementById('place-name').textContent = place.name;
+        document.getElementById('place-category').textContent = "Category: " + place.category;
+        document.getElementById('place-type').textContent = "Type: " + place.type;
+        document.getElementById('place-cost').textContent = "Cost: " + place.cost + " JOD";
+        document.getElementById('place-rating').textContent = "Rating: " + place.rating + " ⭐";
+        document.getElementById('place-desc').textContent = "Description: " + place.desc;
+        document.getElementById('place-location').textContent = "Location: " + place.location;
+    } else {
+        document.getElementById('details-content').innerHTML = "<p>No details found. Please go back and select a place.</p>";
+    }
+
+    // تعامل مع النموذج (Form)
+    document.getElementById('user-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert("Thank you! Your information has been submitted (Simulated).");
+        this.reset();
+    });
+</script>
+
+</body>
+</html>
