@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jordan Spots | دليل الأردن الشامل</title>
+<title>Jordan Spots | دليل الأردن المتكامل</title>
 <style>
     :root { --primary: #667eea; --secondary: #764ba2; --bg: #f8f9fa; }
     body { font-family: 'Segoe UI', Tahoma, sans-serif; margin:0; background: var(--bg); transition: 0.3s; }
@@ -29,7 +29,7 @@
 <header>
     <button class="lang-switch" onclick="toggleLanguage()" id="lang-btn">English</button>
     <h1 id="main-title">اكتشف الأردن 🇯🇴</h1>
-    <p id="sub-title">دليلك الشامل للمواقع والخدمات</p>
+    <p id="sub-title">دليلك لكل الأماكن في المملكة</p>
 </header>
 
 <div class="container">
@@ -53,65 +53,60 @@
 <script>
 let currentLang = 'ar';
 const translations = {
-    ar: { title: "اكتشف الأردن 🇯🇴", subTitle: "دليلك الشامل للمواقع والخدمات", lblCat: "اختر الفئة:", lblBudget: "الميزانية الكلية:", lblPeople: "عدد الأشخاص:", empty: "الرجاء اختيار فئة...", warnBudget: "⚠️ ميزانية منخفضة! تحتاج لـ: ", warnCap: "⚠️ المكان مزدحم لهذا العدد!", ok: "✅ خيار مناسب.", categories: { "": "-- اختر --", university: "🎓 الجامعات", school: "🏫 المدارس", hospital: "🏥 المستشفيات", mall: "🛍️ المولات", pharmacy: "💊 الصيدليات", library: "📚 المكتبات", cafe: "☕ كافيهات", restaurant: "🍽️ مطاعم" } },
-    en: { title: "Explore Jordan 🇯🇴", subTitle: "Your Comprehensive Guide", lblCat: "Category:", lblBudget: "Total Budget:", lblPeople: "People Count:", empty: "Please select a category...", warnBudget: "⚠️ Low budget! You need: ", warnCap: "⚠️ Over capacity!", ok: "✅ Great choice.", categories: { "": "-- Select --", university: "🎓 Universities", school: "🏫 Schools", hospital: "🏥 Hospitals", mall: "🛍️ Malls", pharmacy: "💊 Pharmacies", library: "📚 Libraries", cafe: "☕ Cafes", restaurant: "🍽️ Restaurants" } }
+    ar: { title: "اكتشف الأردن 🇯🇴", subTitle: "دليلك لكل الأماكن في المملكة", lblCat: "اختر الفئة:", lblBudget: "الميزانية الكلية:", lblPeople: "عدد الأشخاص:", empty: "الرجاء اختيار فئة...", warnBudget: "⚠️ ميزانية منخفضة! تحتاج لـ: ", warnCap: "⚠️ المكان مزدحم لهذا العدد!", ok: "✅ خيار مناسب.", categories: { "": "-- اختر --", cafe: "☕ كافيهات", restaurant: "🍽️ مطاعم", university: "🎓 الجامعات", school: "🏫 المدارس", hospital: "🏥 المستشفيات", mall: "🛍️ المولات", pharmacy: "💊 الصيدليات", library: "📚 المكتبات", relax: "🏖️ استرخاء", heritage: "🏛️ آثار" } },
+    en: { title: "Explore Jordan 🇯🇴", subTitle: "All-in-one Guide", lblCat: "Category:", lblBudget: "Total Budget:", lblPeople: "People Count:", empty: "Please select a category...", warnBudget: "⚠️ Low budget! You need: ", warnCap: "⚠️ Over capacity!", ok: "✅ Great choice.", categories: { "": "-- Select --", cafe: "☕ Cafes", restaurant: "🍽️ Restaurants", university: "🎓 Universities", school: "🏫 Schools", hospital: "🏥 Hospitals", mall: "🛍️ Malls", pharmacy: "💊 Pharmacies", library: "📚 Libraries", relax: "🏖️ Relax", heritage: "🏛️ Heritage" } }
 };
 
 const places = [
+    // --- CAFES (RE-ADDED) ---
+    {n_ar:"رومي كافيه", n_en:"Rumi Cafe", cat:"cafe", cost:6, cap:50, loc_ar:"عمان", loc_en:"Amman"},
+    {n_ar:"كتاب كافيه", n_en:"Kitab Coffee House", cat:"cafe", cost:5, cap:40, loc_ar:"عمان", loc_en:"Amman"},
+    {n_ar:"ديجا برو", n_en:"Deja Brew", cat:"cafe", cost:7, cap:30, loc_ar:"عمان", loc_en:"Amman"},
+    {n_ar:"غلوريا جينز", n_en:"Gloria Jean's", cat:"cafe", cost:5, cap:100, loc_ar:"الجامعة الأردنية", loc_en:"JU"},
+    {n_ar:"ألموند كافيه", n_en:"Almond Coffee", cat:"cafe", cost:6, cap:50, loc_ar:"عمان", loc_en:"Amman"},
+    {n_ar:"ديمتريز كافيه", n_en:"Dimitri's Coffee", cat:"cafe", cost:6, cap:60, loc_ar:"عمان", loc_en:"Amman"},
+    {n_ar:"بيت بلدنا", n_en:"Beit Baladna", cat:"cafe", cost:4, cap:80, loc_ar:"عمان", loc_en:"Amman"},
+    {n_ar:"بوكس آت كافيه", n_en:"Books@Cafe", cat:"cafe", cost:8, cap:100, loc_ar:"جبل عمان", loc_en:"Jabal Amman"},
+
+    // --- RESTAURANTS (RE-ADDED) ---
+    {n_ar:"مطعم هاشم", n_en:"Hashem Restaurant", cat:"restaurant", cost:4, cap:200, loc_ar:"وسط البلد", loc_en:"Downtown"},
+    {n_ar:"بيت ستي", n_en:"Beit Sitti", cat:"restaurant", cost:25, cap:20, loc_ar:"اللويبدة", loc_en:"Webdeh"},
+    {n_ar:"مطعم القدس", n_en:"Al Quds Restaurant", cat:"restaurant", cost:8, cap:120, loc_ar:"وسط البلد", loc_en:"Downtown"},
+    {n_ar:"مطعم الأقصى", n_en:"Al Aqsa Restaurant", cat:"restaurant", cost:5, cap:150, loc_ar:"إربد", loc_en:"Irbid"},
+    {n_ar:"كبابجي", n_en:"Kababji", cat:"restaurant", cost:12, cap:150, loc_ar:"عمان", loc_en:"Amman"},
+
     // --- UNIVERSITIES ---
     {n_ar:"الجامعة الأردنية", n_en:"University of Jordan", cat:"university", cost:0, cap:50000, loc_ar:"عمان", loc_en:"Amman"},
     {n_ar:"جامعة العلوم والتكنولوجيا", n_en:"JUST", cat:"university", cost:0, cap:40000, loc_ar:"إربد", loc_en:"Irbid"},
     {n_ar:"جامعة اليرموك", n_en:"Yarmouk University", cat:"university", cost:0, cap:35000, loc_ar:"إربد", loc_en:"Irbid"},
     {n_ar:"الجامعة الهاشمية", n_en:"Hashemite University", cat:"university", cost:0, cap:30000, loc_ar:"الزرقاء", loc_en:"Zarqa"},
     {n_ar:"جامعة مؤتة", n_en:"Mutah University", cat:"university", cost:0, cap:25000, loc_ar:"الكرك", loc_en:"Kerak"},
-    {n_ar:"جامعة آل البيت", n_en:"Al al-Bayt University", cat:"university", cost:0, cap:20000, loc_ar:"المفرق", loc_en:"Mafraq"},
-    {n_ar:"جامعة البلقاء التطبيقية", n_en:"Al-Balqa Applied University", cat:"university", cost:0, cap:45000, loc_ar:"السلط", loc_en:"Salt"},
-    {n_ar:"جامعة الحسين بن طلال", n_en:"Al-Hussein Bin Talal University", cat:"university", cost:0, cap:15000, loc_ar:"معان", loc_en:"Ma'an"},
+    {n_ar:"جامعة البلقاء التطبيقية", n_en:"Al-Balqa Applied", cat:"university", cost:0, cap:45000, loc_ar:"السلط", loc_en:"Salt"},
     {n_ar:"الجامعة الألمانية الأردنية", n_en:"GJU", cat:"university", cost:0, cap:10000, loc_ar:"مادبا", loc_en:"Madaba"},
     {n_ar:"جامعة الأميرة سمية", n_en:"PSUT", cat:"university", cost:0, cap:5000, loc_ar:"عمان", loc_en:"Amman"},
     {n_ar:"جامعة فيلادلفيا", n_en:"Philadelphia University", cat:"university", cost:0, cap:12000, loc_ar:"جرش", loc_en:"Jerash"},
     {n_ar:"جامعة الزيتونة", n_en:"Al-Zaytoonah University", cat:"university", cost:0, cap:15000, loc_ar:"عمان", loc_en:"Amman"},
+    {n_ar:"جامعة الحسين بن طلال", n_en:"Al-Hussein University", cat:"university", cost:0, cap:15000, loc_ar:"معان", loc_en:"Ma'an"},
+    {n_ar:"جامعة آل البيت", n_en:"Al al-Bayt University", cat:"university", cost:0, cap:20000, loc_ar:"المفرق", loc_en:"Mafraq"},
 
     // --- SCHOOLS ---
     {n_ar:"مدرسة اليوبيل", n_en:"Jubilee School", cat:"school", cost:0, cap:1000, loc_ar:"عمان", loc_en:"Amman"},
-    {n_ar:"مدارس النظم الحديثة", n_en:"Modern Systems Schools", cat:"school", cost:0, cap:2000, loc_ar:"عمان", loc_en:"Amman"},
-    {n_ar:"مدرسة إربد الثانوية", n_en:"Irbid Secondary School", cat:"school", cost:0, cap:2500, loc_ar:"إربد", loc_en:"Irbid"},
-    {n_ar:"مدارس الاتحاد", n_en:"Al-Ittihad Schools", cat:"school", cost:0, cap:3000, loc_ar:"عمان", loc_en:"Amman"},
+    {n_ar:"مدرسة إربد الثانوية", n_en:"Irbid Secondary", cat:"school", cost:0, cap:2500, loc_ar:"إربد", loc_en:"Irbid"},
     {n_ar:"الكلية العلمية الإسلامية", n_en:"ISC", cat:"school", cost:0, cap:5000, loc_ar:"عمان", loc_en:"Amman"},
-    {n_ar:"أكاديمية عمان", n_en:"Amman Academy", cat:"school", cost:0, cap:1500, loc_ar:"عمان", loc_en:"Amman"},
-    {n_ar:"مدارس الحصاد التربوي", n_en:"Al-Hassad School", cat:"school", cost:0, cap:2500, loc_ar:"عمان", loc_en:"Amman"},
-    {n_ar:"مدارس الكلية الأهلية", n_en:"Ahliyyah School", cat:"school", cost:0, cap:1200, loc_ar:"عمان", loc_en:"Amman"},
-
-    // --- HOSPITALS ---
-    {n_ar:"مستشفى الجامعة الأردنية", n_en:"JU Hospital", cat:"hospital", cost:0, cap:10000, loc_ar:"عمان", loc_en:"Amman"},
-    {n_ar:"مستشفى الملك عبدالله المؤسس", n_en:"KAUH", cat:"hospital", cost:0, cap:15000, loc_ar:"إربد", loc_en:"Irbid"},
-    {n_ar:"المستشفى التخصصي", n_en:"Specialty Hospital", cat:"hospital", cost:0, cap:5000, loc_ar:"عمان", loc_en:"Amman"},
-    {n_ar:"مستشفى الاستقلال", n_en:"Istiklal Hospital", cat:"hospital", cost:0, cap:4000, loc_ar:"عمان", loc_en:"Amman"},
-    {n_ar:"مستشفى البشير", n_en:"Al-Bashir Hospital", cat:"hospital", cost:0, cap:20000, loc_ar:"عمان", loc_en:"Amman"},
-    {n_ar:"مدينة الحسين الطبية", n_en:"King Hussein Medical City", cat:"hospital", cost:0, cap:30000, loc_ar:"عمان", loc_en:"Amman"},
-    {n_ar:"مستشفى الرويال", n_en:"Royal Hospital", cat:"hospital", cost:0, cap:3000, loc_ar:"عمان", loc_en:"Amman"},
-    {n_ar:"مستشفى إربد التخصصي", n_en:"Irbid Specialty", cat:"hospital", cost:0, cap:2500, loc_ar:"إربد", loc_en:"Irbid"},
 
     // --- MALLS ---
     {n_ar:"سيتي مول", n_en:"City Mall", cat:"mall", cost:0, cap:15000, loc_ar:"عمان", loc_en:"Amman"},
     {n_ar:"مكة مول", n_en:"Mecca Mall", cat:"mall", cost:0, cap:20000, loc_ar:"عمان", loc_en:"Amman"},
     {n_ar:"تاج مول", n_en:"Taj Mall", cat:"mall", cost:0, cap:12000, loc_ar:"عمان", loc_en:"Amman"},
-    {n_ar:"إربد سيتي سنتر", n_en:"Irbid City Center", cat:"mall", cost:0, cap:18000, loc_ar:"إربد", loc_en:"Irbid"},
-    {n_ar:"جاليريا مول", n_en:"Galleria Mall", cat:"mall", cost:0, cap:8000, loc_ar:"عمان", loc_en:"Amman"},
     {n_ar:"العبدلي مول", n_en:"Abdali Mall", cat:"mall", cost:0, cap:25000, loc_ar:"عمان", loc_en:"Amman"},
-    {n_ar:"سيفوي مول", n_en:"Safeway Mall", cat:"mall", cost:0, cap:5000, loc_ar:"عمان", loc_en:"Amman"},
-    {n_ar:"أرابيلا مول", n_en:"Arabella Mall", cat:"mall", cost:0, cap:7000, loc_ar:"إربد", loc_en:"Irbid"},
+    {n_ar:"إربد سيتي سنتر", n_en:"Irbid City Center", cat:"mall", cost:0, cap:18000, loc_ar:"إربد", loc_en:"Irbid"},
 
-    // --- PHARMACIES ---
-    {n_ar:"صيدلية وان (One)", n_en:"One Pharmacy", cat:"pharmacy", cost:0, cap:100, loc_ar:"فروع متعددة", loc_en:"Multiple Branches"},
-    {n_ar:"صيدلية فارمسي ون", n_en:"Pharmacy One", cat:"pharmacy", cost:0, cap:150, loc_ar:"عمان", loc_en:"Amman"},
-    {n_ar:"صيدلية دواكم", n_en:"Dawacom", cat:"pharmacy", cost:0, cap:200, loc_ar:"عمان", loc_en:"Amman"},
-    {n_ar:"صيدلية روحي", n_en:"Rawhi Pharmacy", cat:"pharmacy", cost:0, cap:100, loc_ar:"عمان", loc_en:"Amman"},
-
-    // --- LIBRARIES ---
-    {n_ar:"المكتبة الوطنية", n_en:"National Library", cat:"library", cost:0, cap:1000, loc_ar:"عمان", loc_en:"Amman"},
+    // --- OTHERS ---
+    {n_ar:"فارمسي ون", n_en:"Pharmacy One", cat:"pharmacy", cost:0, cap:100, loc_ar:"عمان", loc_en:"Amman"},
     {n_ar:"مكتبة شومان", n_en:"Shoman Library", cat:"library", cost:0, cap:800, loc_ar:"عمان", loc_en:"Amman"},
-    {n_ar:"مكتبة الأمانة", n_en:"GAM Library", cat:"library", cost:0, cap:500, loc_ar:"عمان", loc_en:"Amman"}
+    {n_ar:"مستشفى الجامعة", n_en:"JU Hospital", cat:"hospital", cost:0, cap:10000, loc_ar:"عمان", loc_en:"Amman"},
+    {n_ar:"البتراء", n_en:"Petra", cat:"heritage", cost:50, cap:20000, loc_ar:"وادي موسى", loc_en:"Wadi Musa"},
+    {n_ar:"البحر الميت", n_en:"Dead Sea", cat:"relax", cost:15, cap:10000, loc_ar:"البحر الميت", loc_en:"Dead Sea"}
 ];
 
 function toggleLanguage() { currentLang = currentLang === 'ar' ? 'en' : 'ar'; updateUI(); }
